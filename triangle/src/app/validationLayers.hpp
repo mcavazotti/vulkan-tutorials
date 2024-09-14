@@ -9,9 +9,9 @@ const std::vector<const char*> validationLayers = {
     "VK_LAYER_KHRONOS_validation"};
 
 #ifdef NDEBUG
-const bool enabelValidationLayers = false;
+const bool enableValidationLayers = false;
 #else
-const bool enabelValidationLayers = true;
+const bool enableValidationLayers = true;
 #endif
 
 bool checkValidationLayerSupport();

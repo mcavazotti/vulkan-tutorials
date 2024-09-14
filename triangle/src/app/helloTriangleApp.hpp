@@ -5,6 +5,8 @@
 
 #include <iostream>
 
+#include "queueFamilyIndices.hpp"
+
 const uint32_t WIDTH = 800;
 const uint32_t HEIGHT = 600;
 
@@ -15,6 +17,9 @@ class HelloTriangleApp {
  private:
   VkInstance instance;
   VkDebugUtilsMessengerEXT debugMessenger;
+  VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+  VkDevice device;
+  VkQueue graphicsQueue;
   GLFWwindow* window;
 
   static VKAPI_ATTR VkBool32 VKAPI_CALL
@@ -30,6 +35,14 @@ class HelloTriangleApp {
   void initWindow();
 
   void initVulkan();
+
+  void pickPhysicalDevice();
+
+  void createLogicalDevice();
+
+  bool isDeviceSuitable(VkPhysicalDevice device);
+
+  QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 
   void createInstance();
 
