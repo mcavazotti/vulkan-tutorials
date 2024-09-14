@@ -1,0 +1,44 @@
+#pragma once
+
+#define GLFW_INCLUDE_VULKAN
+#include <GLFW/glfw3.h>
+
+#include <iostream>
+
+const uint32_t WIDTH = 800;
+const uint32_t HEIGHT = 600;
+
+class HelloTriangleApp {
+ public:
+  void run();
+
+ private:
+  VkInstance instance;
+  VkDebugUtilsMessengerEXT debugMessenger;
+  GLFWwindow* window;
+
+  static VKAPI_ATTR VkBool32 VKAPI_CALL
+  debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
+                VkDebugUtilsMessageTypeFlagsEXT messageType,
+                const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData,
+                void* pUserData) {
+    std::cerr << "validation layer:" << pCallbackData->pMessage << std::endl;
+
+    return VK_FALSE;
+  }
+
+  void initWindow();
+
+  void initVulkan();
+
+  void createInstance();
+
+  void populateDebugMessengerCreateInfo(
+      VkDebugUtilsMessengerCreateInfoEXT& createInfo);
+
+  void setupDebugMessenger();
+
+  void mainLoop();
+
+  void cleanup();
+};
