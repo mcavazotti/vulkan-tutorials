@@ -20,7 +20,11 @@ class HelloTriangleApp {
   VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
   VkDevice device;
   VkQueue graphicsQueue;
+  VkQueue presentQueue;
+  VkSurfaceKHR surface;
+
   GLFWwindow* window;
+
 
   static VKAPI_ATTR VkBool32 VKAPI_CALL
   debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
@@ -35,6 +39,8 @@ class HelloTriangleApp {
   void initWindow();
 
   void initVulkan();
+
+  void createSurface();
 
   void pickPhysicalDevice();
 
